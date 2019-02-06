@@ -1,3 +1,9 @@
+const readline = require('readline');
+readline.emitKeypressEvents(process.stdin);
+process.stdin.setRawMode(true);
+
+
+
 var board = [[' ', 'O',' '], ['X','X','X'], [' ',' ','O']];
 console.log(board[0]);
 console.log(board[1]);
@@ -38,3 +44,10 @@ var alertWin = function(player) {
 }
 
 winConditions(board);
+
+process.stdin.on('keypress', (str,key) => {
+  if (key.ctrl && key.name === 'c') {
+    process.exit();
+  }
+  console.log(`you pressed the ${str} key`);
+})
